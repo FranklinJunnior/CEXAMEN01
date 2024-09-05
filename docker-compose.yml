@@ -1,0 +1,21 @@
+services:
+  backpelis:
+    build:
+      context: ./backpelis
+    ports:
+      - "5180:8080"
+  
+  flask:
+    build:
+      context: ./Flask
+    ports:
+      - "5000:5000"
+  
+  frontpelis:
+    build:
+      context: ./frontpelis
+    ports:
+      - "3000:80"
+    depends_on:
+      - flask
+      - backpelis
