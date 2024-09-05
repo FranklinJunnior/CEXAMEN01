@@ -26,7 +26,7 @@ app.MapGet("/recommend", async (HttpContext context) =>
     }
 
     // Dirección de la API Flask en el puerto 5000
-    string baseUrl = "http://flask:5000";
+    string baseUrl = "http://flask-container:5000";
     using var client = new HttpClient();
     var response = await client.GetAsync($"{baseUrl}/recommend?title={title}");
     response.EnsureSuccessStatusCode();
