@@ -1,5 +1,5 @@
 # Usa una imagen base de Nginx para servir la aplicación construida
-FROM nginx:alpine
+FROM node:16 AS build
 
 # Establece el directorio de trabajo en /app
 WORKDIR /app
@@ -15,6 +15,8 @@ COPY . .
 
 # Construye la aplicación para producción
 RUN npm run build
+
+FROM nginx:alpine
 
 # Copia los archivos construidos desde la etapa de construcción anterior al servidor Nginx
 COPY --from=build /app/build /usr/share/nginx/html
