@@ -11,13 +11,13 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # Descargar los recursos de NLTK necesarios
-RUN python -m nltk.downloader stopwords punkt wordnet punkt_tab
+RUN python -m nltk.downloader stopwords punkt wordnet
 
 # Copia el resto del código de la aplicación en el directorio de trabajo
 COPY . .
 
 # Expone el puerto en el que correrá la aplicación
-EXPOSE 5000
+EXPOSE 80
 
 # Comando para correr la aplicación
 CMD ["python", "app.py"]
