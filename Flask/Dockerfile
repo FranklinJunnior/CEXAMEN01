@@ -17,7 +17,7 @@ RUN python -m nltk.downloader stopwords punkt wordnet
 COPY . .
 
 # Expone el puerto en el que correrá la aplicación
-EXPOSE 80
+EXPOSE 5000
 
 # Comando para correr la aplicación
 CMD ["python", "app.py"]
