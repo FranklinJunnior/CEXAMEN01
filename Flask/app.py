@@ -29,10 +29,6 @@ if not data.empty:
     data.drop(columns=["homepage", "status"], axis=1, inplace=True)
     data['Description'] = data['title'] + ' ' + data['overview'] + ' ' + data['tagline']
 
-    # Importar stopwords en inglés
-    nltk.download('stopwords')
-    nltk.download('punkt')
-    nltk.download('wordnet')
     en_stopwords = stopwords.words("english")
     lemma = WordNetLemmatizer()
 
