@@ -29,12 +29,16 @@ if not data.empty:
     data.drop(columns=["homepage", "status"], axis=1, inplace=True)
     data['Description'] = data['title'] + ' ' + data['overview'] + ' ' + data['tagline']
 
+    # Importar stopwords en inglés
+    nltk.download('stopwords')
+    nltk.download('punkt_tab')
+    nltk.download('wordnet')
     en_stopwords = stopwords.words("english")
     lemma = WordNetLemmatizer()
 
     # Definir una función para el preprocesamiento
     def clean(text):
-        text = re.sub("[^A-Za-z1-9 ]", "", text)  # Eliminar signos de puntuación
+        text = re.sub("[^A-Za-z0-9 ]", "", text)  # Eliminar signos de puntuación
         text = text.lower()  # Convertir a minúsculas
         tokens = word_tokenize(text)  # Tokenizar el texto
         clean_list = [lemma.lemmatize(token) for token in tokens if token not in en_stopwords]  # Lematizar y eliminar stopwords
@@ -70,7 +74,7 @@ if not data.empty:
 
     # Preprocesamiento para Word2Vec
     def clean_for_word2vec(text):
-        text = re.sub("[^A-Za-z1-9 ]", "", text)  # Eliminar signos de puntuación
+        text = re.sub("[^A-Za-z0-9 ]", "", text)  # Eliminar signos de puntuación
         text = text.lower()  # Convertir a minúsculas
         tokens = word_tokenize(text)  # Tokenizar el texto
         clean_list = [lemma.lemmatize(token) for token in tokens if token not in en_stopwords]  # Lematizar y eliminar stopwords
