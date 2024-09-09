@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("backpelis")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9c758c1acfe245cf2f27fd7c21f772c1f1ba8c98")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+41968d189a7e15a1629502d2124c0c1ce897976a")]
 [assembly: System.Reflection.AssemblyProductAttribute("backpelis")]
 [assembly: System.Reflection.AssemblyTitleAttribute("backpelis")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
