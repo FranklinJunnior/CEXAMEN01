@@ -1,27 +1,29 @@
-# Usa una imagen base de Nginx para servir la aplicación construida
+# Fase de construcción
 FROM node:16 AS build
 
-# Establece el directorio de trabajo en /app
+# Establecer el directorio de trabajo
 WORKDIR /app
 
-# Copia el package.json y el package-lock.json
-COPY package*.json ./
+# Copiar el archivo package.json y package-lock.json
+COPY package*.json package-lock*.json ./
 
-# Instala las dependencias
+# Instalar dependencias
 RUN npm install
 
-# Copia el resto del código de la aplicación en el directorio de trabajo
+# Copiar el resto del código fuente
 COPY . .
 
-# Construye la aplicación para producción
+# Construir la aplicación
 RUN npm run build
 
+# Fase de producción
 FROM nginx:alpine
 
-# Copia los archivos construidos desde la etapa de construcción anterior al servidor Nginx
+# Copiar la aplicación construida desde la fase anterior
 COPY --from=build /app/build /usr/share/nginx/html
 
+# Exponer el puerto 80
 EXPOSE 80
 
-# Comando para correr el servidor Nginx
+# Iniciar Nginx
 CMD ["nginx", "-g", "daemon off;"]

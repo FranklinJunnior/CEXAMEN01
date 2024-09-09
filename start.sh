@@ -19,6 +19,6 @@ docker run -d --network=my_network -p 5000:5000 --name flask-container flask
 cd ../frontpelis
 echo "Construyendo y levantando el contenedor de frontpelis..."
 docker build -t frontpelis .
-docker run -d --network=my_network -p 3001:80 --name front frontpelis
+docker run -d --network=my_network -p 3000:80 --name front frontpelis
 
 echo "Todos los contenedores se han iniciado correctamente."
