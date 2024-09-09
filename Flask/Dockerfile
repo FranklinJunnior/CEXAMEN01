@@ -16,6 +16,9 @@ RUN python -m nltk.downloader stopwords punkt wordnet
 # Copia el resto del código de la aplicación en el directorio de trabajo
 COPY . .
 
+# Establece la variable de entorno NLTK_DATA para que NLTK sepa dónde buscar los datos
+ENV NLTK_DATA=/usr/local/share/nltk_data
+
 # Expone el puerto en el que correrá la aplicación
 EXPOSE 5000
 
