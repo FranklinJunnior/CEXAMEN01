@@ -6,16 +6,22 @@ function App() {
   const [title, setTitle] = useState('');
   const [recommendations, setRecommendations] = useState([]);
 
-  const fetchRecommendations = async () => {
+  const handleSearch = async () => {
     try {
-      const response = await fetch(`http://localhost:5180/recommend?title=${title}`);
+      const response = await fetch(`http://back:5180/recommend?title=${title}`);
       if (!response.ok) {
         throw new Error('La respuesta de la red no fue correcta');
       }
       const data = await response.json();
-      setRecommendations(data);
+
+      if (Array.isArray(data)) {
+        setRecommendations(data);
+      } else {
+        setRecommendations([]);
+      }
     } catch (error) {
-      console.error('Error al obtener recomendaciones:', error);
+      console.error('Error fetching recommendations:', error);
+      setRecommendations([]);
     }
   };
 
@@ -30,7 +36,7 @@ function App() {
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Introduce el título de la película"
         />
-        <button className="btn btn-primary" onClick={fetchRecommendations}>
+        <button className="btn btn-primary" onClick={handleSearch}>
           Obtener Recomendaciones
         </button>
       </div>
