@@ -1,26 +1,24 @@
-# Usa una imagen base de Python
-FROM python:3.9
+FROM python:3.9-slim
 
-# Establece el directorio de trabajo en /app
+# Instalar dependencias del sistema
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# Crear directorio de trabajo
 WORKDIR /app
 
-# Copia el archivo requirements.txt en el directorio de trabajo
-COPY requirements.txt .
+# Copiar los archivos de la aplicación
+COPY . /app
 
-# Instala las dependencias
-RUN pip install -r requirements.txt
+# Instalar dependencias de Python
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Descargar los recursos de NLTK necesarios
+# Descargar recursos de NLTK
 RUN python -m nltk.downloader stopwords punkt wordnet
 
-# Copia el resto del código de la aplicación en el directorio de trabajo
-COPY . .
-
-# Establece la variable de entorno NLTK_DATA para que NLTK sepa dónde buscar los datos
-ENV NLTK_DATA=/usr/local/share/nltk_data
-
-# Expone el puerto en el que correrá la aplicación
+# Exponer el puerto
 EXPOSE 5000
 
-# Comando para correr la aplicación
+# Comando para ejecutar la aplicación
 CMD ["python", "app.py"]
