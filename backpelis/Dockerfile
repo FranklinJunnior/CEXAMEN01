@@ -17,8 +17,8 @@ WORKDIR /app
 # Copia los archivos compilados desde la etapa de construcción
 COPY --from=build /app/publish .
 
-# Exponer el puerto 80
-EXPOSE 80
+# Exponer el puerto 5180
+EXPOSE 5180
 
 # Comando para ejecutar la aplicación
 ENTRYPOINT ["dotnet", "backpelis.dll"]

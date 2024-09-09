@@ -8,7 +8,7 @@ function App() {
 
   const handleSearch = async () => {
     try {
-      const response = await fetch(`http://back:5180/recommend?title=${title}`);
+      const response = await fetch(`http://back:8080/recommend?title=${title}`);
       if (!response.ok) {
         throw new Error('La respuesta de la red no fue correcta');
       }
